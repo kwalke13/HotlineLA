@@ -13,4 +13,3 @@ curr_target=argument2;
             with(curr_target){
                 instance_destroy();
             }
-

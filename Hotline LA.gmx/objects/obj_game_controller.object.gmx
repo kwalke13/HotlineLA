@@ -32,6 +32,8 @@ global.alert=false;
 global.weapon=1;
 global.bullet_speed=20;
 global.disguise = "none";
+
+wepCon=instance_create(obj_player.x,obj_player.y,obj_weaponCon);
 </string>
           </argument>
         </arguments>
@@ -61,6 +63,30 @@ global.trespassing=true;
 else{
 global.trespassing=false;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// move weapon controller
+
+wepCon.x=obj_player.x;
+wepCon.y=obj_player.y;
 </string>
           </argument>
         </arguments>
