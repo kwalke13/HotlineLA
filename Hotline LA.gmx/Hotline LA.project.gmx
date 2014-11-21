@@ -6,74 +6,134 @@
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_song1</sound>
+    <sound>sound\snd_silencer_pistol</sound>
+    <sound>sound\snd_shotgun</sound>
+    <sound>sound\snd_explosion</sound>
+    <sound>sound\snd_swing</sound>
+    <sound>sound\snd_bullet_hit_wall</sound>
+    <sound>sound\snd_bullet_hit_1</sound>
+    <sound>sound\snd_rubble1</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\sp_wall</sprite>
-    <sprite>sprites\sp_player_walk</sprite>
-    <sprite>sprites\sp_enemy</sprite>
-    <sprite>sprites\sp_collision_blocker</sprite>
-    <sprite>sprites\sp_enemy_dead</sprite>
-    <sprite>sprites\sp_melee</sprite>
-    <sprite>sprites\sp_blood</sprite>
-    <sprite>sprites\sp_player_standing</sprite>
-    <sprite>sprites\sp_door</sprite>
-    <sprite>sprites\sp_crosshair</sprite>
-    <sprite>sprites\sp_npc</sprite>
-    <sprite>sprites\sp_sight</sprite>
-    <sprite>sprites\sp_last_known_position</sprite>
-    <sprite>sprites\sp_bullet</sprite>
-    <sprite>sprites\sp_npc_target</sprite>
-    <sprite>sprites\sp_restriction</sprite>
-    <sprite>sprites\sp_bomb</sprite>
-    <sprite>sprites\sp_explosion</sprite>
-    <sprite>sprites\sp_wall_rubble</sprite>
-    <sprite>sprites\sp_player2</sprite>
-    <sprite>sprites\sp_player_target</sprite>
-    <sprite>sprites\sp_blank</sprite>
+    <sprites name="trash">
+      <sprite>sprites\sp_player_coll_mask</sprite>
+      <sprite>sprites\sp_player2</sprite>
+      <sprite>sprites\sp_player_walk</sprite>
+      <sprite>sprites\sp_player_standing</sprite>
+      <sprite>sprites\sp_collision_blocker</sprite>
+    </sprites>
+    <sprites name="character">
+      <sprite>sprites\sp_player</sprite>
+      <sprite>sprites\sp_enemy_dead</sprite>
+      <sprite>sprites\sp_npc</sprite>
+      <sprite>sprites\sp_enemy</sprite>
+      <sprite>sprites\sp_basic_player_idle</sprite>
+      <sprite>sprites\sp_basic_enemy_idle</sprite>
+      <sprite>sprites\sp_basic_player_walk</sprite>
+      <sprite>sprites\sp_basic_player_run</sprite>
+      <sprite>sprites\sp_basic_enemy_walk</sprite>
+      <sprite>sprites\sp_basic_enemy_dead</sprite>
+      <sprite>sprites\sp_person_mask</sprite>
+      <sprite>sprites\sp_basic_enemy_dead_end</sprite>
+    </sprites>
+    <sprites name="environment">
+      <sprite>sprites\sp_wall_rubble</sprite>
+      <sprite>sprites\sp_restriction</sprite>
+      <sprite>sprites\sp_door</sprite>
+      <sprite>sprites\sp_wall</sprite>
+      <sprite>sprites\sp_car</sprite>
+    </sprites>
+    <sprites name="weapon">
+      <sprite>sprites\sp_blank</sprite>
+      <sprite>sprites\sp_explosion</sprite>
+      <sprite>sprites\sp_bomb</sprite>
+      <sprite>sprites\sp_bullet</sprite>
+      <sprite>sprites\sp_melee</sprite>
+    </sprites>
+    <sprites name="targeting">
+      <sprite>sprites\sp_npc_target</sprite>
+      <sprite>sprites\sp_player_target</sprite>
+      <sprite>sprites\sp_last_known_position</sprite>
+      <sprite>sprites\sp_sight</sprite>
+      <sprite>sprites\sp_crosshair</sprite>
+    </sprites>
+    <sprites name="particles">
+      <sprite>sprites\sp_blood</sprite>
+    </sprites>
+    <sprite>sprites\spr_bullet_case</sprite>
+    <sprites name="GUI">
+      <sprite>sprites\sp_shotgun_gui</sprite>
+      <sprite>sprites\sp_pistol_gui</sprite>
+      <sprite>sprites\sp_weapon_gui</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths">
     <path>paths\path_test_box</path>
   </paths>
   <scripts name="scripts">
-    <script>scripts\scr_target_perk.gml</script>
-    <script>scripts\scrFire.gml</script>
-    <script>scripts\scrSpecial.gml</script>
+    <scripts name="general">
+      <script>scripts\scrCollision.gml</script>
+      <script>scripts\scrScreenShake.gml</script>
+      <script>scripts\scrRecoil.gml</script>
+      <script>scripts\scrBloodCounter.gml</script>
+    </scripts>
+    <scripts name="player">
+      <script>scripts\scrTargetPerk.gml</script>
+      <script>scripts\scrFire.gml</script>
+      <script>scripts\scrSpecial.gml</script>
+      <script>scripts\scrGetCurrentWeapon.gml</script>
+      <script>scripts\scrUpdatePlayerSprite.gml</script>
+    </scripts>
+    <scripts name="enemy">
+      <script>scripts\scrEnemyHit.gml</script>
+      <script>scripts\scrEnemySight.gml</script>
+      <script>scripts\scrEnemyChaseTarget.gml</script>
+      <script>scripts\scrEnemyTransition.gml</script>
+      <script>scripts\scrEnemyReturn.gml</script>
+      <script>scripts\scrEnemyAttack.gml</script>
+      <script>scripts\scrEnemyBasicWalk.gml</script>
+      <script>scripts\scrUpdateEnemySprite.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
-    <object>objects\obj_player</object>
-    <object>objects\obj_player2</object>
-    <object>objects\obj_blood</object>
+    <objects name="people">
+      <object>objects\obj_person</object>
+      <objects name="npc">
+        <object>objects\obj_npc_AI</object>
+        <object>objects\obj_npc</object>
+        <object>objects\obj_npc_target</object>
+        <object>objects\obj_sight</object>
+      </objects>
+      <objects name="enemy">
+        <object>objects\obj_enemy</object>
+        <object>objects\obj_enemy_ai_static</object>
+        <object>objects\obj_enemy_ai_ns</object>
+        <object>objects\obj_enemy_ai_ew</object>
+        <object>objects\obj_last_known_position</object>
+      </objects>
+      <objects name="player">
+        <object>objects\obj_player</object>
+      </objects>
+    </objects>
     <object>objects\obj_musical</object>
-    <object>objects\obj_collision_blocker</object>
-    <object>objects\obj_door</object>
-    <object>objects\obj_player_target</object>
-    <object>objects\obj_wall_rubble</object>
-    <object>objects\obj_sight</object>
     <object>objects\obj_restriction</object>
-    <object>objects\obj_last_known_position</object>
-    <objects name="npc">
-      <object>objects\obj_npc_AI</object>
-      <object>objects\obj_npc</object>
-      <object>objects\obj_npc_target</object>
-    </objects>
-    <objects name="enemy">
-      <object>objects\obj_enemy</object>
-      <object>objects\obj_static_enemy</object>
-      <object>objects\obj_basic_enemy</object>
-      <object>objects\obj_advanced_enemy</object>
-      <object>objects\obj_Parent_AI</object>
-      <object>objects\obj_enemy_path</object>
-      <object>objects\obj_Parent_AI2</object>
-    </objects>
     <objects name="weapon">
-      <object>objects\obj_weapon</object>
-      <object>objects\obj_melee</object>
-      <object>objects\obj_bullet</object>
-      <object>objects\obj_bomb</object>
-      <object>objects\obj_explosion</object>
-      <object>objects\obj_enemy_bullet</object>
-      <object>objects\obj_weaponCon</object>
+      <objects name="player">
+        <object>objects\obj_weaponCon</object>
+        <object>objects\obj_explosion</object>
+        <object>objects\obj_bomb</object>
+        <object>objects\obj_bullet</object>
+        <object>objects\obj_melee</object>
+        <object>objects\obj_weapon</object>
+        <object>objects\obj_player_target</object>
+        <object>objects\obj_bullet_case</object>
+      </objects>
+      <objects name="enemy">
+        <object>objects\obj_melee_enemy</object>
+        <object>objects\obj_weapon_enemy</object>
+        <object>objects\obj_enemy_bullet</object>
+      </objects>
     </objects>
     <objects name="solid">
       <object>objects\obj_solid</object>
@@ -82,20 +142,38 @@
     <objects name="startup objects">
       <object>objects\obj_blood_surface_controller</object>
       <object>objects\obj_crosshair</object>
-      <object>objects\obj_showInfo</object>
       <object>objects\obj_game_controller</object>
       <object>objects\obj_retreat</object>
+      <object>objects\obj_centerpoint</object>
     </objects>
     <objects name="trash">
       <object>objects\obj_npc_advanced</object>
       <object>objects\obj_npc_old</object>
       <object>objects\obj_weapon_controller</object>
+      <object>objects\obj_enemy_path</object>
+      <object>objects\obj_Parent_AI2</object>
+      <object>objects\obj_advanced_enemy</object>
+      <object>objects\obj_basic_enemy</object>
+      <object>objects\obj_static_enemy</object>
+      <object>objects\obj_player2</object>
+      <object>objects\obj_collision_blocker</object>
+      <object>objects\obj_Parent_AI</object>
     </objects>
+    <objects name="particles">
+      <object>objects\obj_blood</object>
+    </objects>
+    <objects name="environment">
+      <object>objects\obj_wall_rubble</object>
+      <object>objects\obj_door</object>
+    </objects>
+    <object>objects\obj_screenshake</object>
+    <object>objects\obj_screen_recoil</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_npctest</room>
-    <room>rooms\rm_1</room>
     <room>rooms\room2</room>
+    <room>rooms\rm_npctest</room>
+    <room>rooms\room4</room>
+    <room>rooms\rm_1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

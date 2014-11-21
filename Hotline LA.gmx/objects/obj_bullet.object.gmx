@@ -27,10 +27,12 @@
             <kind>1</kind>
             <string>if(place_meeting(x,y,obj_solid)){
     instance_destroy();
+    //audio_play_sound(snd_bullet_hit_wall,10,0);
 }
 
-if(place_meeting(x,y,obj_enemy)){
+if(place_meeting(x,y,obj_enemy) || place_meeting(x,y,obj_npc)){
     instance_destroy();
+    audio_play_sound(snd_bullet_hit_1,10,0);
 }
 </string>
           </argument>

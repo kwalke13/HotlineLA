@@ -8,58 +8,63 @@ weapon= string(wep[@ index]);
 //kick = wep_kick[@ index];
 
 if(weapon=="bat"){
-    //audio_play_sound(snd_machine_gun_shoot,10,0);
-    //instance_create(x,y,obj_bullet);
-    //instance_create(x,y,obj_bullet_case);
+
     instance_create(x,y,obj_melee);
+    scrScreenShake(-4,4,-4,4);
+    audio_play_sound(snd_swing,10,0);
 }
 else if(weapon=="pistol"){
-    //audio_play_sound(snd_machine_gun_shoot,10,0);
-    //instance_create(x,y,obj_bullet);
-    //instance_create(x,y,obj_bullet_case);
+
  if(instance_exists(obj_player_target)){
-        for(var i=0; i<ds_list_size(obj_weaponCon.target_list);i++;){
-            
-             // get the target instance at first location
-            curr_target=ds_list_find_value(obj_weaponCon.target_list,i);
-            // target perk current target
-            scr_target_perk(x,y,curr_target);
-            repeat(90){
-                // do nothing
-            }
-            
-        }
-    // clear list
-    ds_list_clear(obj_weaponCon.target_list);
-    //pistol_mag_size=7;
-    
-    // END target perk
+        // start perk fire
+        pistolPerk=true;
     }
     else{
+        // bullet
         with(instance_create(x, y, obj_bullet)){
+            audio_play_sound(snd_silencer_pistol,10,0);
             direction = point_direction(x, y, mouse_x, mouse_y);
             image_angle=direction;
             speed = global.bullet_speed;
         }
+        // casing
+        with(instance_create(x,y,obj_bullet_case)){
+            direction = point_direction(x,y, mouse_x,mouse_y)-90;
+            image_angle=direction+90;
+        }
+        scrRecoil(2);
+        
     }
 }
 
 if(weapon=="shotgun"){
-    //audio_play_sound(snd_grenade_pop,10,0);
-    //instance_create(x,y,obj_grenade);
-    //instance_create(x,y,obj_bullet_case);
-    for(var i=0; i<6; i++){
-        with(instance_create(x,y,obj_bullet)){
-        if(random(1)>.5)
-            direction=point_direction(x,y,mouse_x+random(40),mouse_y+random(40));
-        else
-            direction=point_direction(x,y,mouse_x-random(40),mouse_y-random(40));
-            
-        image_angle=direction;    
+
+    audio_play_sound(snd_shotgun,10,0);
+    scrRecoil(5);
+    // first bullet
+    with(instance_create(x,y,obj_bullet)){
+        direction=obj_player.direction;
+        image_angle=direction;
         speed=global.bullet_speed;
+    }
+    // other bullets
+    for(var i=0; i<5; i++){
+        with(instance_create(x,y,obj_bullet)){
+            if(random(1)>.5)
+                direction=point_direction(x,y,mouse_x+random(60),mouse_y+random(60));
+            else
+                direction=point_direction(x,y,mouse_x-random(60),mouse_y-random(60));
+            
+            image_angle=direction;    
+            speed=global.bullet_speed;
         }
 
     }
+    // casing
+        with(instance_create(x,y,obj_bullet_case)){
+            direction = point_direction(x,y, mouse_x,mouse_y)-90;
+            image_angle=direction+90;
+        }
 }
 
 if(weapon=="bomb"){
@@ -67,4 +72,3 @@ if(weapon=="bomb"){
     ds_list_add(obj_weaponCon.bomb_list,bomb);
 
 }
-

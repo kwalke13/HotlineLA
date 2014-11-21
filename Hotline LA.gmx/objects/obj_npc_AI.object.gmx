@@ -25,7 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>speed=1;
+            <string>
+mass=10;
+
+hit_count=0;
+
+speed=1;
 
 last_seen_x=0;
 last_seen_y=0;
@@ -67,6 +72,30 @@ npc_target = instance_create(x,y,obj_npc_target);
 target_dist=32;
 
 checker_text="";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// reset speed to 0 (pushback from scrEnemyHit)
+speed=0;
 </string>
           </argument>
         </arguments>
@@ -150,7 +179,8 @@ if(hp&lt;=0){
     alarm[0]=-1;
     dead=true;
     sprite_index=sp_enemy_dead;
-    speed=0;
+    //speed=0;
+    mass=100;
 }
 else{
 // when to set retreat
@@ -191,6 +221,7 @@ if(retreat==true){
     }
 }   // end retreat
 else{
+
 /// BASIC MOVEMENT
 if(direction==0){
     npc_target.x=x+target_dist;
@@ -225,7 +256,7 @@ else if(direction==315){
     npc_target.x=x+target_dist;
 }
    
-if(place_meeting(npc_target.x,npc_target.y,obj_solid) || place_meeting(npc_target.x,npc_target.y,obj_npc) || place_meeting(npc_target.x,npc_target.y,obj_restriction))
+if(place_meeting(npc_target.x,npc_target.y,obj_solid) || place_meeting(npc_target.x,npc_target.y,obj_npc)) // || place_meeting(npc_target.x,npc_target.y,obj_restriction))
 {
     direction+=45;
     image_angle=direction;    
@@ -256,10 +287,53 @@ if(place_meeting(npc_target.x,npc_target.y,obj_solid) || place_meeting(npc_targe
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp-=100;
-
-repeat(blood_count) instance_create(x,y,obj_blood);
-
+            <string>scrEnemyHit();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_player">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scrCollision();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_enemy">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scrCollision();
 </string>
           </argument>
         </arguments>

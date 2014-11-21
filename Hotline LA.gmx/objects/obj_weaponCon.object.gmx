@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>// pistol perk variables 
+pistolPerk=false;   // true if turned on
+targetCounter=0;
+canShootTarget=true;
+pistol_perk_time=10;
+
+image_alpha=0;
 // create
 wep = ds_list_create();
 
@@ -58,6 +64,30 @@ bomb_list=ds_list_create();
 bomb_counter=0;
 
 canFire=true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// targeting perk
+canShootTarget=true;
 </string>
           </argument>
         </arguments>
@@ -164,6 +194,50 @@ if(mouse_check_button_released(mb_right)){
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///pistol perk
+
+if(pistolPerk &amp;&amp; canShootTarget){
+            
+    // get the target instance at first location
+    curr_target=ds_list_find_value(target_list,targetCounter);
+    // target perk current target
+    scrTargetPerk(x,y,curr_target);
+    targetCounter++;
+    canShootTarget=false;
+    alarm[1]=pistol_perk_time;
+
+}
+    // clear list
+if(ds_list_size(target_list)==targetCounter &amp;&amp; ds_list_size(target_list)&gt;0 &amp;&amp; pistolPerk==true){
+    
+    ds_list_clear(obj_weaponCon.target_list);
+    pistolPerk=false;
+    //target_list=ds_list_create();
+    //pistol_mag_size=7;
+    targetCounter=0;
+    
+    // END target perk
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -183,7 +257,7 @@ if(mouse_check_button_released(mb_right)){
           <argument>
             <kind>1</kind>
             <string>draw_self();
-draw_text(x+20,y+20, "weapon: "+string(wep[@ counter]));
+//draw_text(x+20,y+20, "weapon: "+string(wep[@ counter]));
 </string>
           </argument>
         </arguments>
@@ -201,5 +275,8 @@ draw_text(x+20,y+20, "weapon: "+string(wep[@ counter]));
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>2,3</point>
+    <point>14,14</point>
+  </PhysicsShapePoints>
 </object>

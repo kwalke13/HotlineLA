@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>max_blood = 900;
+            <string>/// blood counter control
+
+scrBloodCounter(3000);
+
 scale = random_range(0.2,0.8);
 image_xscale = scale;
 image_yscale = scale;
@@ -35,8 +38,7 @@ friction=.5;
 //vspeed=2;
 
 // melee
-if(global.weapon==1){
-
+if(scrGetCurrentWeapon()=="bat"){
     p_dir= obj_player.direction;
 
 }

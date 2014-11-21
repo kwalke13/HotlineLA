@@ -30,10 +30,13 @@
 global.trespassing=false;
 global.alert=false;
 global.weapon=1;
-global.bullet_speed=20;
+global.bullet_speed=30;
 global.disguise = "none";
 
 wepCon=instance_create(obj_player.x,obj_player.y,obj_weaponCon);
+
+slow_mo=false;
+
 </string>
           </argument>
         </arguments>
@@ -87,6 +90,145 @@ global.trespassing=false;
 
 wepCon.x=obj_player.x;
 wepCon.y=obj_player.y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>currentWeapon=scrGetCurrentWeapon();
+if(currentWeapon=="bat")
+draw_sprite(sp_weapon_gui,0,1000,600);
+
+if(currentWeapon=="pistol")
+draw_sprite(sp_weapon_gui,1,1000,600);
+
+if(currentWeapon=="shotgun")
+draw_sprite(sp_weapon_gui,2,1000,600);
+
+if(currentWeapon=="bomb")
+draw_sprite(sp_weapon_gui,3,1000,600);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="90">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///cam focus centerpoint
+view_object[0]=obj_centerpoint;
+view_hborder[0]=350;
+view_vborder[0]=350;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="90">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///cam focus centerpoint
+view_object[0]=obj_player;
+view_hborder[0]=200;
+view_vborder[0]=200;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="67">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>show_message(instance_number(obj_blood));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(slow_mo==false){
+    room_speed=15;
+    slow_mo=true;
+}
+else{
+    room_speed=30;
+    slow_mo=false;
+}
 </string>
           </argument>
         </arguments>

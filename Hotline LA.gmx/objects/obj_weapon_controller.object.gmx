@@ -237,7 +237,7 @@ if(global.weapon ==2)
              // get the target instance at first location
             curr_target=ds_list_find_value(target_list,i);
             // target perk current target
-            scr_target_perk(x,y,curr_target);
+            //scr_target_perk(x,y,curr_target);
             repeat(90){
                 // do nothing
             }
