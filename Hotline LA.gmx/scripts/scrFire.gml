@@ -37,7 +37,7 @@ else if(weapon=="pistol"){
     }
 }
 
-if(weapon=="shotgun"){
+else if(weapon=="shotgun"){
 
     audio_play_sound(snd_shotgun,10,0);
     scrRecoil(5);
@@ -67,8 +67,33 @@ if(weapon=="shotgun"){
         }
 }
 
-if(weapon=="bomb"){
+else if(weapon=="bomb"){
     bomb = instance_create(x,y,obj_bomb);
     ds_list_add(obj_weaponCon.bomb_list,bomb);
 
 }
+
+else if(weapon=="sniper"){
+
+ if(instance_exists(obj_player_target)){
+        // start perk fire
+        pistolPerk=true;
+    }
+    else{
+        // bullet
+        with(instance_create(x, y, obj_bullet)){
+            audio_play_sound(snd_silencer_pistol,10,0);
+            direction = point_direction(x, y, mouse_x, mouse_y);
+            image_angle=direction;
+            speed = global.bullet_speed+2;
+        }
+        // casing
+        with(instance_create(x,y,obj_bullet_case)){
+            direction = point_direction(x,y, mouse_x,mouse_y)-90;
+            image_angle=direction+90;
+        }
+        scrRecoil(2);
+        
+    }
+}
+

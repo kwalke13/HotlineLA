@@ -88,8 +88,8 @@ global.trespassing=false;
             <kind>1</kind>
             <string>/// move weapon controller
 
-wepCon.x=obj_player.x;
-wepCon.y=obj_player.y;
+//wepCon.x=obj_player.x;
+//wepCon.y=obj_player.y;
 </string>
           </argument>
         </arguments>
@@ -124,6 +124,9 @@ draw_sprite(sp_weapon_gui,2,1000,600);
 
 if(currentWeapon=="bomb")
 draw_sprite(sp_weapon_gui,3,1000,600);
+
+if(currentWeapon=="sniper")
+draw_sprite(sp_weapon_gui,4,1000,600);
 </string>
           </argument>
         </arguments>
@@ -146,10 +149,18 @@ draw_sprite(sp_weapon_gui,3,1000,600);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///cam focus centerpoint
-view_object[0]=obj_centerpoint;
-view_hborder[0]=350;
-view_vborder[0]=350;
+            <string>/// camera focus
+
+if(scrGetCurrentWeapon()=="sniper"){
+    view_object[0]=obj_crosshair;
+    view_hborder[0]=50;
+    view_vborder[0]=50;
+}
+else{
+    view_object[0]=obj_centerpoint;
+    view_hborder[0]=350;
+    view_vborder[0]=350;
+}
 </string>
           </argument>
         </arguments>
@@ -172,7 +183,7 @@ view_vborder[0]=350;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///cam focus centerpoint
+            <string>///cam focus return to player
 view_object[0]=obj_player;
 view_hborder[0]=200;
 view_vborder[0]=200;

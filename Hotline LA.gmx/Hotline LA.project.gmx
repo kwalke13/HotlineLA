@@ -22,7 +22,7 @@
       <sprite>sprites\sp_player_standing</sprite>
       <sprite>sprites\sp_collision_blocker</sprite>
     </sprites>
-    <sprites name="character">
+    <sprites name="people">
       <sprite>sprites\sp_player</sprite>
       <sprite>sprites\sp_enemy_dead</sprite>
       <sprite>sprites\sp_npc</sprite>
@@ -35,6 +35,9 @@
       <sprite>sprites\sp_basic_enemy_dead</sprite>
       <sprite>sprites\sp_person_mask</sprite>
       <sprite>sprites\sp_basic_enemy_dead_end</sprite>
+      <sprites name="player">
+        <sprite>sprites\sp_player_basic</sprite>
+      </sprites>
     </sprites>
     <sprites name="environment">
       <sprite>sprites\sp_wall_rubble</sprite>
@@ -42,6 +45,8 @@
       <sprite>sprites\sp_door</sprite>
       <sprite>sprites\sp_wall</sprite>
       <sprite>sprites\sp_car</sprite>
+      <sprite>sprites\sp_window_horizontal</sprite>
+      <sprite>sprites\sp_window_vertical</sprite>
     </sprites>
     <sprites name="weapon">
       <sprite>sprites\sp_blank</sprite>
@@ -49,6 +54,9 @@
       <sprite>sprites\sp_bomb</sprite>
       <sprite>sprites\sp_bullet</sprite>
       <sprite>sprites\sp_melee</sprite>
+      <sprite>sprites\sp_pistol</sprite>
+      <sprite>sprites\sp_shotgun</sprite>
+      <sprite>sprites\sp_sniper</sprite>
     </sprites>
     <sprites name="targeting">
       <sprite>sprites\sp_npc_target</sprite>
@@ -59,11 +67,10 @@
     </sprites>
     <sprites name="particles">
       <sprite>sprites\sp_blood</sprite>
+      <sprite>sprites\sp_broken_glass</sprite>
+      <sprite>sprites\spr_bullet_case</sprite>
     </sprites>
-    <sprite>sprites\spr_bullet_case</sprite>
-    <sprites name="GUI">
-      <sprite>sprites\sp_shotgun_gui</sprite>
-      <sprite>sprites\sp_pistol_gui</sprite>
+    <sprites name="HUD">
       <sprite>sprites\sp_weapon_gui</sprite>
     </sprites>
   </sprites>
@@ -83,6 +90,7 @@
       <script>scripts\scrFire.gml</script>
       <script>scripts\scrSpecial.gml</script>
       <script>scripts\scrGetCurrentWeapon.gml</script>
+      <script>scripts\scrGetCurrentWeaponHands.gml</script>
       <script>scripts\scrUpdatePlayerSprite.gml</script>
     </scripts>
     <scripts name="enemy">
@@ -116,8 +124,6 @@
         <object>objects\obj_player</object>
       </objects>
     </objects>
-    <object>objects\obj_musical</object>
-    <object>objects\obj_restriction</object>
     <objects name="weapon">
       <objects name="player">
         <object>objects\obj_weaponCon</object>
@@ -135,9 +141,20 @@
         <object>objects\obj_enemy_bullet</object>
       </objects>
     </objects>
-    <objects name="solid">
+    <objects name="environment">
       <object>objects\obj_solid</object>
-      <object>objects\obj_wall</object>
+      <object>objects\obj_wall_rubble</object>
+      <object>objects\obj_door</object>
+      <object>objects\obj_restriction</object>
+      <objects name="destructable">
+        <object>objects\obj_window_horizontal</object>
+        <object>objects\obj_window_vertical</object>
+        <object>objects\obj_destructable</object>
+      </objects>
+      <objects name="indestructable">
+        <object>objects\obj_indestructable</object>
+        <object>objects\obj_wall</object>
+      </objects>
     </objects>
     <objects name="startup objects">
       <object>objects\obj_blood_surface_controller</object>
@@ -161,15 +178,16 @@
     </objects>
     <objects name="particles">
       <object>objects\obj_blood</object>
+      <object>objects\obj_broken_glass</object>
     </objects>
-    <objects name="environment">
-      <object>objects\obj_wall_rubble</object>
-      <object>objects\obj_door</object>
+    <objects name="mechanics">
+      <object>objects\obj_musical</object>
+      <object>objects\obj_screen_recoil</object>
+      <object>objects\obj_screenshake</object>
     </objects>
-    <object>objects\obj_screenshake</object>
-    <object>objects\obj_screen_recoil</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room5</room>
     <room>rooms\room2</room>
     <room>rooms\rm_npctest</room>
     <room>rooms\room4</room>
